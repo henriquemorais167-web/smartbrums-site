@@ -589,15 +589,48 @@ footer p{max-width:56ch}
   const urls = [];
   for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'frames/hq/m/f' : 'frames/hq/f') + String(f).padStart(3, '0') + '.webp');
   const N = urls.length;
-  const imgs = urls.map(() => new Image()), ready = new Array(N).fill(false);
+  // Carregamento em duas camadas (leve na memoria, sem travar):
+  // 1) cada quadro e baixado e guardado COMPRIMIDO (blob, ~50 KB);
+  // 2) so os quadros perto da posicao atual viram imagem aberta (ImageBitmap), preparada fora do desenho.
+  // Antes, as 121 imagens abertas passavam de 1,7 GB no computador: o navegador descartava e reabria a cada quadro (7 fps no Mac).
+  const BW = mobile ? 810 : 1920, BH = mobile ? 1440 : 1080; // tamanho da imagem aberta (computador: 2560 -> 1920)
+  const JAN = 12, SOLTA = 18, MAX_ABRINDO = 3;
+  const blobs = new Array(N).fill(null), bmp = new Array(N).fill(null), abrindo = new Array(N).fill(false);
+  let emAberto = 0;
+  const temBitmap = typeof createImageBitmap === 'function';
+  const abrir = async i => {
+    abrindo[i] = true; emAberto++;
+    try {
+      let b;
+      if (temBitmap) {
+        try { b = await createImageBitmap(blobs[i], (mobile ? {} : {resizeWidth: BW, resizeHeight: BH, resizeQuality: 'high'})); }
+        catch (e) { b = await createImageBitmap(blobs[i]); }
+      } else {
+        b = new Image(); b.src = URL.createObjectURL(blobs[i]); await b.decode();
+      }
+      if (Math.abs(i - want) > SOLTA) { if (b.close) b.close(); } else { bmp[i] = b; if (Math.abs(i - want) <= 2) draw(curF); }
+    } catch (e) {}
+    abrindo[i] = false; emAberto--; prepara();
+  };
+  // abre os quadros mais perto de onde a pessoa esta (dos mais proximos para os mais longe) e solta os distantes
+  const prepara = () => {
+    const c = Math.round(want);
+    for (let d = 0; d <= JAN && emAberto < MAX_ABRINDO; d++) for (const i of d ? [c + d, c - d] : [c]) {
+      if (i < 0 || i >= N || emAberto >= MAX_ABRINDO) continue;
+      if (blobs[i] && !bmp[i] && !abrindo[i]) abrir(i);
+    }
+    for (let i = 0; i < N; i++) if (bmp[i] && Math.abs(i - c) > SOLTA && Math.abs(i - curF) > SOLTA) { if (bmp[i].close) bmp[i].close(); bmp[i] = null; }
+  };
   let shown = -1, want = still ? Math.round(N * .2) : 0, curF = want;
-  const pick = i => { if (ready[i]) return imgs[i]; for (let d = 1; d < N; d++) { if (ready[i - d]) return imgs[i - d]; if (ready[i + d]) return imgs[i + d]; } return null; };
+  const pick = i => { if (bmp[i]) return bmp[i]; for (let d = 1; d < N; d++) { if (bmp[i - d]) return bmp[i - d]; if (bmp[i + d]) return bmp[i + d]; } return null; };
+  const larg = im => im.naturalWidth || im.width, alt = im => im.naturalHeight || im.height;
   let geo = null;
   const fit = im => {
-    if (!geo || geo.w !== im.naturalWidth) {
-      const cw = canvas.width, ch = canvas.height, sc = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
-      const dw = im.naturalWidth * sc, dh = im.naturalHeight * sc, fx = im.naturalWidth < im.naturalHeight ? .5 : .37;
-      geo = {w: im.naturalWidth, x: Math.min(0, Math.max(cw - dw, cw / 2 - fx * dw)), y: (ch - dh) / 2, dw, dh};
+    const iw = larg(im), ih = alt(im);
+    if (!geo || geo.w !== iw || geo.cw !== canvas.width) {
+      const cw = canvas.width, ch = canvas.height, sc = Math.max(cw / iw, ch / ih);
+      const dw = iw * sc, dh = ih * sc, fx = iw < ih ? .5 : .37;
+      geo = {w: iw, cw, x: Math.min(0, Math.max(cw - dw, cw / 2 - fx * dw)), y: (ch - dh) / 2, dw, dh};
     }
   };
   // f pode ser fracionario: desenha o quadro de baixo e mistura o de cima pela fracao (sem salto entre quadros)
@@ -606,19 +639,15 @@ footer p{max-width:56ch}
     const im = pick(i); if (!im) return;
     fit(im);
     ctx.globalAlpha = 1; ctx.drawImage(im, geo.x, geo.y, geo.dw, geo.dh);
-    if (a > .01 && i + 1 < N && ready[i + 1]) { ctx.globalAlpha = a; ctx.drawImage(imgs[i + 1], geo.x, geo.y, geo.dw, geo.dh); ctx.globalAlpha = 1; }
+    if (a > .01 && i + 1 < N && bmp[i + 1] && im === bmp[i]) { ctx.globalAlpha = a; ctx.drawImage(bmp[i + 1], geo.x, geo.y, geo.dw, geo.dh); ctx.globalAlpha = 1; }
     shown = f;
   };
-  const load = i => {
-    const im = imgs[i]; if (im.src) return;
-    im.decoding = 'async'; im.src = urls[i];
-    (im.decode ? im.decode() : new Promise(r => im.onload = r)).then(() => { ready[i] = true; if (Math.abs(i - want) <= 2) draw(curF); }).catch(() => {});
-  };
+  const baixa = i => fetch(urls[i]).then(r => r.ok ? r.blob() : null).then(b => { if (!b) return; blobs[i] = b; if (Math.abs(i - want) <= JAN) prepara(); }).catch(() => {});
   let started = false;
   const start = () => {
     if (started) return; started = true;
     const order = []; for (let st = 8; st >= 1; st >>= 1) for (let i = 0; i < N; i += st) if (!order.includes(i)) order.push(i); if (!order.includes(N - 1)) order.push(N - 1);
-    let k = 0; const pump = () => { for (let n = 0; n < 4 && k < order.length; n++) load(order[k++]); if (k < order.length) setTimeout(pump, 40); }; pump();
+    let k = 0, ativos = 0; const pump = () => { while (ativos < 6 && k < order.length) { ativos++; baixa(order[k++]).finally(() => { ativos--; pump(); }); } }; pump();
   };
   new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { start(); o.disconnect(); } }, {rootMargin: '200% 0px'}).observe(film);
   if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300));
@@ -626,8 +655,9 @@ footer p{max-width:56ch}
   const measure = () => {
     const cs = getComputedStyle(film); pt = parseFloat(cs.paddingTop) || 0; pb = parseFloat(cs.paddingBottom) || 0;
     top0 = film.getBoundingClientRect().top + scrollY; span = (film.offsetHeight - pt - pb - innerHeight) || 1;
-    const dpr = Math.min(devicePixelRatio || 1, 3), cw = Math.round(canvas.clientWidth * dpr), ch = Math.round(canvas.clientHeight * dpr);
-    if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'; geo = null; if (shown >= 0 || ready.some(Boolean)) draw(curF); }
+    const qw = canvas.clientWidth || 1, qh = canvas.clientHeight || 1, r = Math.min(devicePixelRatio || 1, 2, Math.max(BW / qw, BH / qh, 1));
+    const cw = Math.round(qw * r), ch = Math.round(qh * r);
+    if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'medium'; geo = null; if (shown >= 0 || bmp.some(Boolean)) draw(curF); }
   };
   addEventListener('resize', measure); addEventListener('load', measure); measure();
   let step = -1;
@@ -640,6 +670,7 @@ footer p{max-width:56ch}
       curF += (want - curF) * .35;
       if (Math.abs(want - curF) < .01) curF = want;
       if (Math.abs(curF - shown) > .004) draw(curF);
+      prepara();
       barI.style.transform = 'scaleX(' + p.toFixed(4) + ')';
       setStep(p < .34 ? 0 : p < .68 ? 1 : 2);
       if (running) requestAnimationFrame(tick);
