@@ -621,8 +621,8 @@ footer p{max-width:56ch}
   const measure = () => {
     const cs = getComputedStyle(film); pt = parseFloat(cs.paddingTop) || 0; pb = parseFloat(cs.paddingBottom) || 0;
     top0 = film.getBoundingClientRect().top + scrollY; span = (film.offsetHeight - pt - pb - innerHeight) || 1;
-    const dpr = Math.min(devicePixelRatio || 1, 2), cw = Math.round(canvas.clientWidth * dpr), ch = Math.round(canvas.clientHeight * dpr);
-    if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; geo = null; if (shown >= 0 || ready.some(Boolean)) draw(curF); }
+    const dpr = Math.min(devicePixelRatio || 1, 3), cw = Math.round(canvas.clientWidth * dpr), ch = Math.round(canvas.clientHeight * dpr);
+    if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'; geo = null; if (shown >= 0 || ready.some(Boolean)) draw(curF); }
   };
   addEventListener('resize', measure); addEventListener('load', measure); measure();
   let step = -1;
