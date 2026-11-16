@@ -148,7 +148,7 @@ section{scroll-margin-top:80px}
 /* film: Note 15 Pro */
 .film{position:relative;height:300vh;background:#17161b;color:#fff}
 .film-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.film-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.film-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transform:translateZ(0)}
 .film-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,12,18,.78) 0%,rgba(14,12,18,.4) 36%,rgba(14,12,18,0) 58%)}
 .film-copy{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(64px,12vh,130px);height:300px;max-width:560px}
 .film-step{position:absolute;left:0;bottom:0;width:100%;opacity:0;transform:translateY(18px);transition:opacity 380ms ease,transform 520ms var(--ease-out);pointer-events:none}
@@ -158,7 +158,7 @@ section{scroll-margin-top:80px}
 .film-step p{margin-top:16px;font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.84);max-width:34ch}
 .film-step .btn{margin-top:26px;background:#fff;color:var(--tinta)}
 .film-bar{position:absolute;left:var(--gutter);right:var(--gutter);bottom:32px;height:2px;background:rgba(255,255,255,.18)}
-.film-bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
+.film-bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0);will-change:transform}
 
 
 .film{--ft:clamp(90px,13vh,140px);--fb:clamp(90px,13vh,140px);background:#c9d3ea;color:var(--tinta);padding:var(--ft) 0 var(--fb);height:calc(300vh + var(--ft) + var(--fb))}
@@ -170,7 +170,7 @@ section{scroll-margin-top:80px}
 .film-stick::after{bottom:0;background:linear-gradient(0deg,#cdcadb,rgba(205,202,219,0))}
 .film-shade{display:none}
 .film-copy{left:auto;right:var(--gutter);top:50%;bottom:auto;transform:translateY(-50%);width:min(460px,40vw);height:360px}
-.film-step{bottom:auto;top:0;padding:36px 36px 40px;border-radius:28px;background:rgba(255,255,255,.72);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 20px 50px -24px rgba(20,24,60,.35)}
+.film-step{bottom:auto;top:0;padding:36px 36px 40px;border-radius:28px;background:rgba(255,255,255,.9);box-shadow:0 20px 50px -24px rgba(20,24,60,.35)}
 .film-step .k{color:var(--grafite)}
 .film-step h2{font-size:clamp(36px,4.2vw,64px)}
 .film-step p{color:var(--grafite)}
@@ -572,49 +572,69 @@ footer p{max-width:56ch}
   };
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  // film: Note 15 Pro frames follow scroll (canvas image sequence)
+  // film: Note 17 Pro Max frames follow scroll (canvas image sequence)
   const film = document.getElementById('film');
   const canvas = film.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', {alpha: false});
   const fsteps = [...film.querySelectorAll('.film-step')];
-  const bar = film.querySelector('.film-bar');
+  const barI = film.querySelector('.film-bar i');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const N = 121, urls = Array.from({length: N}, (_, i) => (innerWidth < 900 ? 'frames/m/f' : 'frames/f') + String(i + 1).padStart(3, '0') + '.webp');
-  let shown = still ? 25 : 0, curF = shown;
+  const mobile = innerWidth / innerHeight < .75;
+  const STEP = mobile ? 2 : 1;
+  const urls = [];
+  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'frames/m/f' : 'frames/f') + String(f).padStart(3, '0') + '.webp');
+  const N = urls.length;
+  const imgs = urls.map(() => new Image()), ready = new Array(N).fill(false);
+  let shown = -1, want = still ? Math.round(N * .2) : 0, curF = want;
+  const pick = i => { if (ready[i]) return imgs[i]; for (let d = 1; d < N; d++) { if (ready[i - d]) return imgs[i - d]; if (ready[i + d]) return imgs[i + d]; } return null; };
+  let geo = null;
   const draw = i => {
-    let im = imgs[i];
-    if (!im || !im.complete || !im.naturalWidth) {
-      for (let d = 1; d < imgs.length; d++) { const a = imgs[i - d], b = imgs[i + d]; if (a && a.complete && a.naturalWidth) { im = a; break; } if (b && b.complete && b.naturalWidth) { im = b; break; } }
-      if (!im || !im.naturalWidth) return;
+    const im = pick(i); if (!im) return;
+    if (!geo || geo.w !== im.naturalWidth) {
+      const cw = canvas.width, ch = canvas.height, sc = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+      const dw = im.naturalWidth * sc, dh = im.naturalHeight * sc, fx = im.naturalWidth < im.naturalHeight ? .5 : .37;
+      geo = {w: im.naturalWidth, x: Math.min(0, Math.max(cw - dw, cw / 2 - fx * dw)), y: (ch - dh) / 2, dw, dh};
     }
-    const cw = canvas.width, ch = canvas.height, sc = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
-    const dw = im.naturalWidth * sc, dh = im.naturalHeight * sc;
-    const fx = .37, dx = Math.min(0, Math.max(cw - dw, cw / 2 - fx * dw));
-    ctx.drawImage(im, dx, (ch - dh) / 2, dw, dh);
+    ctx.drawImage(im, geo.x, geo.y, geo.dw, geo.dh);
+    shown = i;
   };
-  const imgs = urls.map(() => new Image());
-  const load = i => { const im = imgs[i]; if (im.src) return; im.onload = () => { if (Math.abs(i - shown) < 3) draw(shown); }; im.src = urls[i]; };
+  const load = i => {
+    const im = imgs[i]; if (im.src) return;
+    im.decoding = 'async'; im.src = urls[i];
+    (im.decode ? im.decode() : new Promise(r => im.onload = r)).then(() => { ready[i] = true; if (Math.abs(i - want) <= 2) draw(Math.round(curF)); }).catch(() => {});
+  };
   let started = false;
-  const start = () => { if (started) return; started = true; load(0); const order = []; for (let st = 16; st >= 1; st = st >> 1) for (let i = 0; i < N; i += st) order.push(i); order.push(N - 1); let k = 0; const pump = () => { for (let n = 0; n < 6 && k < order.length; n++) load(order[k++]); if (k < order.length) setTimeout(pump, 60); }; pump(); };
-  new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { start(); o.disconnect(); } }, {rootMargin: '150% 0px'}).observe(film);
-  const fit = () => { const dpr = Math.min(devicePixelRatio || 1, 2); canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr); draw(shown); };
-  addEventListener('resize', fit); fit();
-  const setStep = k => fsteps.forEach((el, n) => el.classList.toggle('on', n === k));
-  if (still) { setStep(0); } else {
+  const start = () => {
+    if (started) return; started = true;
+    const order = []; for (let st = 8; st >= 1; st >>= 1) for (let i = 0; i < N; i += st) if (!order.includes(i)) order.push(i); if (!order.includes(N - 1)) order.push(N - 1);
+    let k = 0; const pump = () => { for (let n = 0; n < 4 && k < order.length; n++) load(order[k++]); if (k < order.length) setTimeout(pump, 40); }; pump();
+  };
+  new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { start(); o.disconnect(); } }, {rootMargin: '200% 0px'}).observe(film);
+  let pt = 0, pb = 0, top0 = 0, span = 1;
+  const measure = () => {
+    const cs = getComputedStyle(film); pt = parseFloat(cs.paddingTop) || 0; pb = parseFloat(cs.paddingBottom) || 0;
+    top0 = film.getBoundingClientRect().top + scrollY; span = (film.offsetHeight - pt - pb - innerHeight) || 1;
+    const dpr = Math.min(devicePixelRatio || 1, 2); canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr);
+    geo = null; if (shown >= 0 || ready.some(Boolean)) draw(Math.round(curF));
+  };
+  addEventListener('resize', measure); addEventListener('load', measure); measure();
+  let step = -1;
+  const setStep = k => { if (k === step) return; step = k; fsteps.forEach((el, n) => el.classList.toggle('on', n === k)); };
+  setStep(0);
+  if (!still) {
+    let running = false, p = 0;
+    const read = () => { p = Math.min(Math.max((scrollY - top0 - pt) / span, 0), 1); want = p * (N - 1); };
     const tick = () => {
-      const r = film.getBoundingClientRect();
-      const st = film.querySelector('.film-stick').parentElement, pt = parseFloat(getComputedStyle(film).paddingTop) || 0, pb = parseFloat(getComputedStyle(film).paddingBottom) || 0;
-      const p = Math.min(Math.max((-r.top - pt) / ((r.height - pt - pb - innerHeight) || 1), 0), 1);
-      if (r.bottom > 0 && r.top < innerHeight) {
-        bar.style.setProperty('--p', p.toFixed(4));
-        setStep(p < .34 ? 0 : p < .68 ? 1 : 2);
-        curF += (p * (imgs.length - 1) - curF) * .22;
-        const k = Math.round(curF);
-        if (k !== shown) { shown = k; draw(k); }
-      }
-      requestAnimationFrame(tick);
+      curF += (want - curF) * .35;
+      if (Math.abs(want - curF) < .02) curF = want;
+      const k = Math.round(curF);
+      if (k !== shown) draw(k);
+      barI.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      setStep(p < .34 ? 0 : p < .68 ? 1 : 2);
+      if (running) requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    addEventListener('scroll', read, {passive: true}); read();
+    new IntersectionObserver(e => { const on = e[0].isIntersecting; if (on && !running) { running = true; measure(); read(); requestAnimationFrame(tick); } else if (!on) running = false; }).observe(film);
   }
 
   // steps line
