@@ -582,7 +582,7 @@ footer p{max-width:56ch}
   const mobile = innerWidth / innerHeight < .75;
   const STEP = 1; // todos os 121 quadros tambem no celular (antes pulava 1 de cada 2: salto visivel)
   const urls = [];
-  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'frames/m/f' : 'frames/f') + String(f).padStart(3, '0') + '.webp');
+  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'frames/hq/m/f' : 'frames/hq/f') + String(f).padStart(3, '0') + '.webp');
   const N = urls.length;
   const imgs = urls.map(() => new Image()), ready = new Array(N).fill(false);
   let shown = -1, want = still ? Math.round(N * .2) : 0, curF = want;
