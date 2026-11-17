@@ -367,7 +367,7 @@ footer .credito{opacity:.75;font-size:12px}
       <a href="#servicos">Serviços</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#loja">Loja</a>
-      <a href="../">Comprar Xiaomi</a>
+      <a href="/">Comprar Xiaomi</a>
       <a class="btn btn-zap" data-wa href="https://wa.me/5531971902296?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Smart%20Brum%27s%20e%20quero%20saber%20mais%20sobre%20os%20Xiaomi." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
     </nav>
   </div>
@@ -398,7 +398,7 @@ footer .credito{opacity:.75;font-size:12px}
       <div class="stage-glow" aria-hidden="true"></div>
       <div class="rig" id="rig">
         <div class="vcard" id="phone">
-          <video src="video/bancada.mp4" poster="video/bancada.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Técnico consertando um iPhone vermelho aberto na bancada"></video>
+          <video src="/manutencao/video/bancada.mp4" poster="/manutencao/video/bancada.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Técnico consertando um iPhone vermelho aberto na bancada"></video>
           <span class="tag"><i aria-hidden="true"></i>Na bancada</span>
         </div>
       </div>
@@ -440,7 +440,7 @@ footer .credito{opacity:.75;font-size:12px}
 </section>
 
 <section class="poco" aria-labelledby="h-poco">
-  <video class="poco-bg" src="video/parafuso.mp4" poster="video/parafuso.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <video class="poco-bg" src="/manutencao/video/parafuso.mp4" poster="/manutencao/video/parafuso.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
   <div class="wrap poco-in">
     <div class="poco-copy">
       <p class="k">Cuidado</p>
@@ -498,7 +498,7 @@ footer .credito{opacity:.75;font-size:12px}
       <p>Manda o modelo e o defeito. A gente responde com o orçamento.</p>
       <a class="btn" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
     </div>
-    <img src="video/bancada.jpg" alt="iPhone vermelho aberto na bancada durante o conserto" width="1280" height="720" loading="lazy" decoding="async" style="border-radius:28px;object-fit:cover;aspect-ratio:4/3">
+    <img src="/manutencao/video/bancada.jpg" alt="iPhone vermelho aberto na bancada durante o conserto" width="1280" height="720" loading="lazy" decoding="async" style="border-radius:28px;object-fit:cover;aspect-ratio:4/3">
   </div>
 </section>
 </main>
@@ -512,7 +512,7 @@ footer .credito{opacity:.75;font-size:12px}
 
 <footer>
   <div class="wrap">
-    <p>Smart Brum's, conserto de celulares em Brumadinho - MG. <a href="../">Ver os Xiaomi à venda</a>.</p>
+    <p>Smart Brum's, conserto de celulares em Brumadinho - MG. <a href="/">Ver os Xiaomi à venda</a>.</p>
     <p class="credito">Vídeos: Tima Miroshnichenko, via Pexels. iPhone é marca da Apple Inc.</p>
     <p>© 2026 Smart Brum's</p>
   </div>
@@ -552,7 +552,7 @@ footer .credito{opacity:.75;font-size:12px}
   const mobile = innerWidth / innerHeight < .75;
   const STEP = 1; // todos os 121 quadros tambem no celular (antes pulava 1 de cada 2: salto visivel)
   const urls = [];
-  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'quadros/m/f' : 'quadros/f') + String(f).padStart(3, '0') + '.webp');
+  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? '/manutencao/quadros/m/f' : '/manutencao/quadros/f') + String(f).padStart(3, '0') + '.webp');
   const N = urls.length;
   // Carregamento em duas camadas (leve na memoria, sem travar):
   // 1) cada quadro e baixado e guardado COMPRIMIDO (blob, ~50 KB);

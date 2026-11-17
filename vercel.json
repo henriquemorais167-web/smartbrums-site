@@ -1,6 +1,31 @@
 {
   "cleanUrls": true,
   "headers": [
-    { "source": "/(img|frames)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+    {
+      "source": "/(img|frames)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/manuten%C3%A7%C3%A3o",
+      "destination": "/manutencao",
+      "permanent": true
+    },
+    {
+      "source": "/manutenção",
+      "destination": "/manutencao",
+      "permanent": true
+    },
+    {
+      "source": "/conserto",
+      "destination": "/manutencao",
+      "permanent": false
+    }
   ]
 }
