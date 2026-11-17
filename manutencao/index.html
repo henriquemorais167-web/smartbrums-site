@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Brum's | Conserto de celular em Brumadinho</title>
+<meta name="description" content="Conserto de celular em Brumadinho-MG: tela, bateria, conector de carga, câmera e mais. Peça o orçamento pelo WhatsApp.">
+<meta name="theme-color" content="#6633CC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violeta:#6633CC;
+  --violeta-escuro:#4B1FA6;
+  --violeta-claro:#E9E1FA;
+  --tinta:#16121F;
+  --nevoa:#EFEEF4;
+  --grafite:#6E6A7C;
+  --branco:#FFFFFF;
+  --linha:#DAD7E3;
+  --zap:#1FAF54;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-io:cubic-bezier(.77,0,.175,1);
+  --wrap:1240px;
+  --gutter:clamp(20px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:light;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 100;color:var(--tinta);background:var(--nevoa);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--violeta);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.skip{position:absolute;left:12px;top:-60px;background:var(--tinta);color:#fff;padding:10px 14px;border-radius:10px;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+
+/* type */
+.display{font-variation-settings:"wdth" 125;font-weight:800;letter-spacing:-.025em;line-height:.95}
+.h2{font-variation-settings:"wdth" 118;font-weight:750;font-size:clamp(34px,5vw,64px);letter-spacing:-.02em;line-height:1}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--grafite);max-width:34ch}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;font-size:16px;transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn:active{transform:scale(.97)}
+.btn-zap{background:var(--violeta);color:#fff}
+.btn-ghost{color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--linha)}
+@media (hover:hover) and (pointer:fine){
+  .btn-zap:hover{background:var(--violeta-escuro)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--tinta)}
+}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* header */
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background-color 240ms ease,box-shadow 240ms ease}
+.top.dark{background:rgba(23,22,27,.55)!important;box-shadow:0 1px 0 rgba(255,255,255,.08)!important}
+.top.dark .logo-word,.top.dark .nav a:not(.btn){color:rgba(255,255,255,.86)}
+.top{transition:background-color 240ms ease,box-shadow 240ms ease}
+.top .logo-word,.nav a{transition:color 240ms ease}
+.top.scrolled{background:rgba(239,238,244,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);box-shadow:0 1px 0 var(--linha)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--violeta);color:#fff;display:grid;place-items:center}
+.logo-mark svg{width:16px;height:22px}
+.logo-word{font-size:15px;letter-spacing:.02em;line-height:1}
+.logo-word b{font-weight:800}
+.logo-word span{font-weight:400}
+.nav{display:flex;gap:28px;align-items:center}
+.nav a{text-decoration:none;font-size:15px;color:var(--grafite);transition:color 200ms ease}
+.nav a:hover{color:var(--tinta)}
+.top .btn{min-height:44px;padding:0 18px;font-size:15px}
+.nav a.btn-zap,.nav a.btn-zap:hover{color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:stretch;padding:110px 0 0;overflow:hidden}
+.hero .wrap > div:first-child{align-self:center;padding-bottom:60px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;width:100%}
+.hero h1{font-size:clamp(40px,5.4vw,82px)}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln > span{display:block;transform:translateY(105%);animation:rise 900ms var(--ease-out) forwards}
+.hero h1 .ln:nth-child(2) > span{animation-delay:80ms}
+.hero h1 .ln:nth-child(3) > span{animation-delay:160ms}
+.hero h1 .ln:nth-child(4) > span{animation-delay:240ms}
+@keyframes rise{to{transform:translateY(0)}}
+.hero .lead{margin:28px 0 36px;opacity:0;animation:fade 600ms ease 420ms forwards}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;opacity:0;animation:fade 600ms ease 520ms forwards}
+@keyframes fade{to{opacity:1}}
+.facts{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:36px;padding:0;opacity:0;animation:fade 600ms ease 620ms forwards}
+.facts li{list-style:none}
+.fact{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-size:15px;font-weight:600;color:var(--tinta);text-decoration:none;white-space:nowrap}
+.fact svg{width:18px;height:18px;flex:none;color:var(--violeta)}
+.fact .seta{width:14px;height:14px;color:var(--grafite);margin-left:-2px;transition:transform 200ms var(--ease-out)}
+a.fact{transition:color 200ms ease,transform 160ms var(--ease-out)}
+a.fact:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){a.fact:hover{color:var(--violeta)}a.fact:hover .seta{transform:translate(2px,-2px)}}
+
+/* phone stage */
+.stage{position:relative;display:flex;align-items:flex-end;justify-content:center;align-self:end;min-height:0}
+.stage-glow{position:absolute;width:min(92%,520px);aspect-ratio:1;border-radius:50%;background:var(--violeta-claro);left:50%;bottom:8%;transform:translateX(-50%)}
+.rig{position:relative;width:min(560px,100%);will-change:transform;opacity:0;animation:rigIn 1100ms var(--ease-out) 180ms forwards}
+@keyframes rigIn{from{opacity:0;transform:translateY(60px) scale(.96)}to{opacity:1;transform:none}}
+/* ticker */
+.ticker{background:var(--tinta);color:#fff;overflow:hidden;padding:22px 0}
+.ticker-track{display:flex;width:max-content;animation:tick 38s linear infinite}
+@media (hover:hover) and (pointer:fine){.ticker:hover .ticker-track{animation-play-state:paused}} /* no celular o toque deixava o hover preso e a faixa parava */
+.ticker ul{display:flex;align-items:center;gap:40px;padding-right:40px;list-style:none}
+.ticker li{display:flex;align-items:center;gap:40px;font-variation-settings:"wdth" 120;font-weight:600;font-size:clamp(20px,2.4vw,30px);white-space:nowrap}
+.ticker li svg{width:14px;height:20px;color:var(--violeta)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+section{scroll-margin-top:80px}
+.sec{padding:clamp(80px,11vw,150px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.sec-head p{color:var(--grafite);max-width:40ch}
+
+/* models */
+.models{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(220px,auto);gap:16px}
+.model{position:relative;background:var(--branco);border-radius:32px;padding:28px;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;isolation:isolate;transition:transform 240ms var(--ease-out)}
+.model:active{transform:scale(.985)}
+.model > :not(.pic-tile){position:relative;z-index:1}
+.model h3{font-variation-settings:"wdth" 112;font-weight:700;font-size:22px;line-height:1.1;letter-spacing:-.01em}
+.model .fam{font-size:14px;color:var(--grafite);margin-bottom:6px}
+.model .spec{font-size:15px;color:var(--grafite);margin-top:10px;max-width:26ch}
+.model .ask{margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--violeta)}
+.model .ask svg{width:18px;height:18px}
+.model.feat{grid-column:span 2;grid-row:span 2;background:var(--violeta);color:#fff;padding:40px}
+.model.feat h3{font-size:clamp(30px,3.4vw,46px);font-variation-settings:"wdth" 122;font-weight:800;max-width:10ch}
+.model.feat .fam,.model.feat .spec{color:rgba(255,255,255,.75)}
+.model.feat .spec{font-size:17px;max-width:30ch}
+.model.feat .ask{color:#fff;margin-top:0;padding-top:16px}
+.model.wide{grid-column:span 2}
+.model.ink{background:var(--tinta);color:#fff}
+.model.ink .fam,.model.ink .spec{color:rgba(255,255,255,.65)}
+.model.ink .ask{color:#C9B6F7}
+.model .spec{max-width:min(26ch,62%)}
+.model:not(.wide) .spec{max-width:none}
+.model.feat .spec{max-width:32ch}
+.model .pic-tile{display:block;pointer-events:none;transition:transform 500ms var(--ease-out)}
+.model.feat .pic-tile{width:min(100%,540px);height:auto;margin:28px auto 4px;align-self:center}
+.model.wide .pic-tile{position:absolute;right:20px;bottom:-30px;height:220px;width:auto;max-width:50%;object-fit:contain;object-position:right bottom}
+.model.wide .spec{max-width:min(24ch,40%)}
+.model.full{grid-column:1 / -1}
+.model.full .pic-tile{max-width:40%}
+.model.wide h3{max-width:46%}
+@media (hover:hover) and (pointer:fine){
+  .model.feat:hover .pic-tile{transform:translateY(-8px)}
+  .model.wide:hover .pic-tile{transform:translateY(-10px)}
+}
+
+/* film: Note 15 Pro */
+.film{position:relative;height:200vh;background:#17161b;color:#fff}
+.film-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.film-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transform:translateZ(0)}
+.film-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,12,18,.78) 0%,rgba(14,12,18,.4) 36%,rgba(14,12,18,0) 58%)}
+.film-copy{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(64px,12vh,130px);height:300px;max-width:560px}
+.film-step{position:absolute;left:0;bottom:0;width:100%;opacity:0;transform:translateY(18px);transition:opacity 380ms ease,transform 520ms var(--ease-out);pointer-events:none}
+.film-step.on{opacity:1;transform:none;pointer-events:auto}
+.film-step .k{font-size:15px;color:rgba(255,255,255,.72);margin-bottom:12px}
+.film-step h2{font-size:clamp(44px,6.4vw,96px)}
+.film-step p{margin-top:16px;font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.84);max-width:34ch}
+.film-step .btn{margin-top:26px;background:#fff;color:var(--tinta)}
+.film-bar{position:absolute;left:var(--gutter);right:var(--gutter);bottom:32px;height:2px;background:rgba(255,255,255,.18)}
+.film-bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0);will-change:transform}
+
+
+.film{--ft:clamp(90px,13vh,140px);--fb:clamp(90px,13vh,140px);background:#c9d3ea;color:var(--tinta);padding:var(--ft) 0 var(--fb);height:calc(200vh + var(--ft) + var(--fb))}
+.film::before,.film::after{content:"";position:absolute;left:0;right:0;pointer-events:none}
+.film::before{top:0;height:calc(var(--ft) + 2px);background:linear-gradient(180deg,var(--nevoa) 0%,#b9b6c6 18%,#5a5670 45%,#1d1a2c 75%,#08061a 100%)}
+.film::after{bottom:0;height:calc(var(--fb) + 2px);background:linear-gradient(180deg,#cdcadb 0%,#d9d7e4 40%,var(--nevoa) 100%)}
+.film-stick::before,.film-stick::after{content:"";position:absolute;left:0;right:0;height:60px;z-index:1;pointer-events:none}
+.film-stick::before{top:0;background:linear-gradient(180deg,#08061a,rgba(8,6,26,0))}
+.film-stick::after{bottom:0;background:linear-gradient(0deg,#cdcadb,rgba(205,202,219,0))}
+.film-shade{display:none}
+.film-copy{left:auto;right:var(--gutter);top:50%;bottom:auto;transform:translateY(-50%);width:min(460px,40vw);height:360px}
+.film-step{bottom:auto;top:0;padding:36px 36px 40px;border-radius:28px;background:rgba(255,255,255,.9);box-shadow:0 20px 50px -24px rgba(20,24,60,.35)}
+.film-step .k{color:var(--grafite)}
+.film-step h2{font-size:clamp(36px,4.2vw,64px)}
+.film-step p{color:var(--grafite)}
+.film-step .btn{background:var(--violeta);color:#fff}
+.film-bar{background:rgba(22,18,31,.15)}
+.film-bar i{background:var(--violeta)}
+
+/* POCO band */
+.poco{position:relative;background:#0D1124;color:#fff;min-height:min(86vh,780px);display:flex;align-items:center;overflow:hidden}
+.poco-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%}
+.poco::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,17,36,.9) 0%,rgba(13,17,36,.55) 30%,rgba(13,17,36,0) 52%)}
+.poco-in{position:relative;z-index:2;width:100%}
+@media (min-width:641px){
+  .poco{--ft:clamp(170px,26vh,280px);--fb:clamp(110px,16vh,180px);padding:var(--ft) 0 var(--fb);min-height:calc(min(86vh,780px) + var(--ft) + var(--fb))}
+  .poco-bg{top:var(--ft);height:calc(100% - var(--ft) - var(--fb));-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 7%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 7%,#000 90%,transparent 100%)}
+  .poco::before{top:var(--ft);bottom:var(--fb);height:auto}
+  .poco::after{background:linear-gradient(180deg,var(--nevoa) 0%,rgba(239,238,244,.78) 25%,rgba(239,238,244,.35) 58%,rgba(239,238,244,0) 100%) top/100% calc(var(--ft) + 30px) no-repeat,linear-gradient(0deg,var(--nevoa) 0%,rgba(239,238,244,.7) 30%,rgba(239,238,244,.25) 65%,rgba(239,238,244,0) 100%) bottom/100% calc(var(--fb) + 30px) no-repeat}
+}
+.poco::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,var(--nevoa) 0%,rgba(239,238,244,.82) 22%,rgba(239,238,244,.42) 52%,rgba(239,238,244,.12) 80%,rgba(239,238,244,0) 100%) top/100% clamp(150px,24vh,260px) no-repeat,linear-gradient(0deg,var(--nevoa) 0%,rgba(239,238,244,.8) 25%,rgba(239,238,244,.35) 60%,rgba(239,238,244,0) 100%) bottom/100% clamp(120px,20vh,220px) no-repeat}
+.poco-copy{max-width:460px}
+.poco-copy .k{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:12px}
+.poco-copy h2{font-size:clamp(44px,6vw,92px)}
+.poco-copy p{margin-top:18px;color:rgba(255,255,255,.84);font-size:clamp(16px,1.5vw,19px);max-width:34ch}
+.poco-copy .btn{margin-top:28px;background:#fff;color:var(--tinta)}
+
+/* Instagram hand */
+.insta{background:var(--violeta-claro);padding-bottom:0;overflow:hidden}
+.insta-in{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.insta-copy{align-self:center;padding-bottom:80px}
+.insta-copy p{color:var(--grafite);margin:22px 0 32px;max-width:36ch;font-size:clamp(16px,1.5vw,19px)}
+.hand{position:relative;display:block;width:100%;aspect-ratio:600/795;container-type:inline-size;isolation:isolate;will-change:transform}
+.hand-img{-webkit-mask-image:linear-gradient(#000 91%,transparent 99.5%);mask-image:linear-gradient(#000 91%,transparent 99.5%);position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;transform:translateZ(0)}
+.hand-screen{position:absolute;transform:translateZ(0);left:11.7%;top:1.74%;width:52.6%;height:88.07%;border-radius:8.4%/3.77%;overflow:hidden;background:#fff;z-index:1;display:flex;flex-direction:column}
+.sb{flex:none;height:4.2%;display:flex;align-items:center;justify-content:space-between;padding:0 9% 0 10%;font:600 2.4cqw/1 system-ui,sans-serif;color:#000;position:relative}
+.sb .hole{position:absolute;left:50%;top:55%;width:2.7cqw;height:2.7cqw;border-radius:50%;background:#0a0a0a;transform:translate(-50%,-50%)}
+.sb svg{height:2.2cqw;width:auto}
+.feed{flex:1;overflow:hidden;position:relative;min-height:0}
+.feed img{width:100%;height:auto;display:block;will-change:transform}
+.ig-nav{flex:none;width:100%;height:auto;display:block}
+
+
+/* clientes */
+.cli{padding:clamp(80px,11vw,150px) 0 clamp(32px,4vw,56px);overflow:hidden}
+.cli .sec-head a{color:var(--violeta);font-weight:600;text-decoration:none;display:inline-block;padding:12px 0;margin:-12px 0}
+.cli .sec-head a:hover{text-decoration:underline;text-underline-offset:4px}
+.cli-track{display:flex;width:max-content;animation:tick 70s linear infinite}
+@media (hover:hover) and (pointer:fine){.cli-strip:hover .cli-track{animation-play-state:paused}} /* idem: so pausa com mouse de verdade */
+@media (max-width:760px){.cli-track{animation-duration:42s}} /* no celular a faixa e mais curta: mais rapida para se notar que anda */
+.cli-track ul{display:flex;gap:16px;padding-right:16px;list-style:none}
+.cli-track li{width:clamp(200px,20vw,260px);aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--linha);flex:none}
+.cli-track img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* reasons spec sheet */
+.sheet{border-top:1.5px solid var(--tinta)}
+.row{display:grid;grid-template-columns:1fr 1.6fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--linha);align-items:baseline}
+.row dt{font-size:15px;color:var(--grafite)}
+.row dd{font-variation-settings:"wdth" 115;font-weight:650;font-size:clamp(22px,2.6vw,34px);letter-spacing:-.015em;line-height:1.15}
+.row dd small{display:block;font-variation-settings:"wdth" 100;font-weight:400;font-size:16px;letter-spacing:0;color:var(--grafite);margin-top:8px}
+
+/* steps */
+.steps-bg{background:var(--branco)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative;counter-reset:s;list-style:none}
+.steps::before{content:"";position:absolute;top:27px;left:0;right:0;height:2px;background:var(--linha)}
+.steps::after{content:"";position:absolute;top:27px;left:0;right:0;height:2px;background:var(--violeta);transform:scaleX(var(--p,0));transform-origin:left;transition:transform 1400ms var(--ease-io)}
+.steps.seen::after{--p:1}
+.step{position:relative;z-index:1}
+.step .n{width:56px;height:56px;border-radius:18px;background:var(--nevoa);display:grid;place-items:center;font-variation-settings:"wdth" 125;font-weight:800;font-size:20px;margin-bottom:24px;transition:background-color 300ms ease,color 300ms ease}
+.steps.seen .step .n{background:var(--violeta);color:#fff}
+.steps.seen .step:nth-child(2) .n{transition-delay:500ms}
+.steps.seen .step:nth-child(3) .n{transition-delay:1000ms}
+.step h3{font-variation-settings:"wdth" 112;font-weight:700;font-size:22px;margin-bottom:8px}
+.step p{color:var(--grafite);max-width:30ch}
+
+/* store */
+.store{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card-s{background:var(--branco);border-radius:32px;padding:36px}
+.card-s h3{font-variation-settings:"wdth" 112;font-weight:700;font-size:22px;margin-bottom:12px}
+.card-s p,.card-s address{font-style:normal;color:var(--grafite)}
+.card-s a.link{display:inline-flex;margin-top:20px;font-weight:600;color:var(--violeta);text-decoration:none;min-height:44px;align-items:center}
+.card-s a.link:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* final */
+.final{background:var(--violeta);color:#fff;border-radius:40px;margin:0 var(--gutter);padding:clamp(56px,9vw,120px) var(--gutter);position:relative;overflow:hidden}
+.final h2{font-size:clamp(44px,8vw,120px);max-width:12ch}
+.final p{margin:24px 0 36px;color:rgba(255,255,255,.8);font-size:clamp(17px,1.6vw,20px);max-width:36ch}
+.final .btn{background:#fff;color:var(--violeta)}
+@media (hover:hover) and (pointer:fine){.final .btn:hover{background:var(--violeta-claro)}}
+.final-in{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.final img{width:min(100%,420px);height:auto;justify-self:center;filter:drop-shadow(0 30px 30px rgba(20,8,60,.35))}
+
+.ticker{margin-top:clamp(64px,8vw,110px)}
+footer{padding:56px 0 120px;font-size:14px;color:var(--grafite)}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer p{max-width:56ch}
+
+/* mobile dock */
+.dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:none;transform:translateY(140%);transition:transform 360ms var(--ease-out)}
+.dock.show{transform:none}
+.dock .btn{width:100%;justify-content:center;box-shadow:0 14px 30px -10px rgba(75,31,166,.6)}
+
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:12px}
+  .stage{padding-top:28px}
+  .rig{width:min(440px,94%)}
+    .models{grid-template-columns:repeat(2,1fr)}
+  .nav a:not(.btn){display:none}
+}
+@media (max-width:640px){
+  .hero{padding-top:96px;min-height:auto}
+    .final-in{grid-template-columns:1fr}
+  .film-copy{top:auto;bottom:112px;transform:none;left:var(--gutter);right:var(--gutter);width:auto;height:auto}
+  .film-step{position:absolute;left:0;right:0;bottom:0;top:auto;width:auto;padding:24px 24px 28px;border-radius:24px}
+  .film-bar{bottom:96px}
+  .poco{display:block;min-height:0}
+  .poco-bg{position:relative;height:360px;object-position:74% 50%}
+  .poco::before{display:none}
+  .poco-in{padding:36px var(--gutter) 96px;background:#0D1124}
+  .poco-in::before{content:"";position:absolute;left:0;right:0;top:-140px;height:140px;background:linear-gradient(180deg,rgba(13,17,36,0) 0%,rgba(13,17,36,.55) 45%,#0D1124 100%);pointer-events:none}
+  .poco-bg{margin-bottom:0}
+  .poco-in::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(239,238,244,0) 0%,rgba(239,238,244,.6) 55%,var(--nevoa) 100%);pointer-events:none}
+  .insta-in{grid-template-columns:1fr;gap:12px}
+  .insta-copy{padding-bottom:20px}
+  .model.wide h3,.model.wide .spec{max-width:none}
+  .final img{width:220px;justify-self:start}
+  .model.wide .pic-tile{position:static;height:auto;width:100%;max-width:360px;max-height:none;margin:22px auto 0;transform:none}
+  .hero .ctas .btn{flex:1 1 auto;justify-content:center}
+  .rig{width:min(360px,94%)}
+  .hero .lead{margin:20px 0 24px}
+  .facts{display:none}
+  .models{grid-template-columns:1fr;grid-auto-rows:auto}
+  .model,.model.feat,.model.wide{grid-column:auto;grid-row:auto;min-height:0}
+  .model .ask{padding-top:20px}
+  .model.feat{min-height:400px;padding:32px}
+  .model .spec{max-width:64%}
+  .model.feat .spec{max-width:none}
+  .step{padding-left:80px;min-height:56px}
+  .step .n{position:absolute;left:0;top:0;margin:0}
+  .row{grid-template-columns:1fr;gap:6px}
+  .steps{grid-template-columns:1fr;gap:36px}
+  .steps::before,.steps::after{top:28px;bottom:auto;left:27px;right:auto;width:2px;height:calc(100% - 140px)}
+  .steps::after{transform:scaleY(var(--p,0));transform-origin:top}
+  .store{grid-template-columns:1fr}
+  .final{border-radius:28px;margin:0 12px}
+  .dock{display:block}
+  .top .btn{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;transition-duration:1ms!important;scroll-behavior:auto!important}
+  .ticker-track{animation:none}
+  .cli-track{animation:none}
+  .cli-strip{overflow-x:auto}
+    .film{height:auto;padding:0}
+  .film-stick{position:relative}
+}
+/* manutencao */
+.vcard{position:relative;display:block;width:100%;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:#111;box-shadow:0 40px 80px -30px rgba(40,20,90,.45),0 0 0 1px rgba(22,18,31,.06);will-change:transform;isolation:isolate}
+.vcard video,.vcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.vcard .tag{position:absolute;left:18px;bottom:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:13px;font-weight:600;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vcard .tag i{width:8px;height:8px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 3px rgba(229,72,77,.18)}
+video.poco-bg{object-position:50% 50%}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc a{display:flex;flex-direction:column;gap:10px;padding:26px 24px;border-radius:24px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--linha);color:var(--tinta);text-decoration:none;transition:box-shadow 200ms ease,transform 160ms var(--ease-out)}
+.svc a:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.svc a:hover{box-shadow:inset 0 0 0 1.5px var(--violeta)}}
+.svc svg.ic{width:30px;height:30px;color:var(--violeta)}
+.svc h3{font-size:20px;letter-spacing:-.01em}
+.svc p{color:var(--grafite);font-size:15px;line-height:1.45}
+.svc .ask{margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:8px;color:var(--violeta);font-weight:700;font-size:14px}
+.svc .ask svg{width:16px;height:16px}
+footer .credito{opacity:.75;font-size:12px}
+@media (max-width:980px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.svc{grid-template-columns:1fr}.svc a{padding:22px 20px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#servicos">Pular para os serviços</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bolt" viewBox="0 0 14 20"><path d="M9.2 0 0 11.4h5.6L4.4 20 14 8.2H8.3L9.2 0Z" fill="currentColor"/></symbol>
+  <symbol id="zap" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Smart Brum's Assistência, início">
+      <span class="logo-mark"><svg viewBox="0 0 16 22" aria-hidden="true"><rect x="1.2" y="1.2" width="13.6" height="19.6" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.3 4.6 5 11.6h2.7L6.7 17.4 11 10.3H8.4l.9-5.7Z" fill="currentColor"/></svg></span>
+      <span class="logo-word"><span>SMART</span> <b>BRUM'S</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#loja">Loja</a>
+      <a href="../">Comprar Xiaomi</a>
+      <a class="btn btn-zap" data-wa href="https://wa.me/5531971902296?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Smart%20Brum%27s%20e%20quero%20saber%20mais%20sobre%20os%20Xiaomi." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div>
+      <h1 id="h1" class="display">
+        <span class="ln"><span>Quebrou?</span></span>
+        <span class="ln"><span>A gente</span></span>
+        <span class="ln"><span>conserta.</span></span>
+      </h1>
+      <p class="lead">Conserto de celular na bancada da Smart Brum's, em Brumadinho. Manda o modelo e o defeito que a gente responde com o orçamento.</p>
+      <div class="ctas">
+        <a class="btn btn-zap" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
+        <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+      </div>
+      <ul class="facts">
+        <li><span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H8.5L4 19.5v-14Z"/><path d="M8 9.5h8M8 12.5h5"/></svg>Orçamento pelo WhatsApp</span></li>
+        <li><span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Loja em Brumadinho</span></li>
+        <li><a class="fact" href="https://www.instagram.com/smart_brums/" target="_blank" rel="noopener" aria-label="@smart_brums no Instagram (abre em nova aba)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1"/></svg>@smart_brums<svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="stage-glow" aria-hidden="true"></div>
+      <div class="rig" id="rig">
+        <div class="vcard" id="phone">
+          <video src="video/bancada.mp4" poster="video/bancada.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Técnico consertando um iPhone vermelho aberto na bancada"></video>
+          <span class="tag"><i aria-hidden="true"></i>Na bancada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="film" id="film" aria-labelledby="h-film">
+  <div class="film-stick">
+    <canvas class="film-canvas" aria-hidden="true"></canvas>
+    <div class="film-shade" aria-hidden="true"></div>
+    <div class="film-copy">
+      <div class="film-step on"><p class="k">Diagnóstico</p><h2 id="h-film" class="display">Aberto na bancada.</h2><p>A gente abre o aparelho e encontra o defeito antes de trocar qualquer peça.</p></div>
+      <div class="film-step"><p class="k">Peça por peça</p><h2 class="display">Só o que precisa.</h2><p>Tela, bateria, conector de carga ou câmera: você sabe o que vai ser trocado e o valor antes.</p></div>
+      <div class="film-step"><p class="k">Pronto</p><h2 class="display">De volta pra sua mão.</h2><p>Fechado com cuidado, parafuso por parafuso.</p><a class="btn" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a></div>
+    </div>
+    <div class="film-bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="sec" id="servicos" aria-labelledby="h-servicos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-servicos" class="h2">O que a gente conserta.</h2>
+      <p>Toque no defeito e mande o modelo do seu celular. A gente responde com o orçamento.</p>
+    </div>
+    <div class="svc">
+      <a data-wa="Troca de tela" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="m9 8 3 3-2 3 4 3"/></svg><h3>Troca de tela</h3><p>Tela trincada, sem toque ou com manchas.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+      <a data-wa="Bateria" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="16" height="10" rx="2.5"/><path d="M21 10.5v3M10.5 9l-2 3h4l-2 3"/></svg><h3>Bateria</h3><p>Descarrega rápido ou desliga sozinho.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+      <a data-wa="Conector de carga" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v5M16 3v5M6 8h12v3a6 6 0 0 1-12 0V8ZM12 17v4"/></svg><h3>Conector de carga</h3><p>Não carrega, ou só carrega em uma posição.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+      <a data-wa="Câmera" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8.5 6.5 10 4h4l1.5 2.5"/></svg><h3>Câmera</h3><p>Foto borrada, tremendo ou câmera preta.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+      <a data-wa="Tampa traseira" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><rect x="8" y="4.5" width="4" height="4" rx="1.2"/><path d="m13 12 2 2-2 2"/></svg><h3>Tampa traseira</h3><p>Vidro de trás trincado ou quebrado.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+      <a data-wa="Som e microfone" href="#" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9.5h3l4.5-4v13L8 14.5H5v-5Z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg><h3>Som e microfone</h3><p>Não ouve, não é ouvido ou som baixo.</p><span class="ask"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="poco" aria-labelledby="h-poco">
+  <video class="poco-bg" src="video/parafuso.mp4" poster="video/parafuso.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <div class="wrap poco-in">
+    <div class="poco-copy">
+      <p class="k">Cuidado</p>
+      <h2 id="h-poco" class="display">Cada parafuso no lugar.</h2>
+      <p>Conserto feito com calma e com a ferramenta certa pra cada peça.</p>
+      <a class="btn" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-por-que">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="h-por-que" class="h2">Consertar aqui<br>é simples.</h2></div>
+    <dl class="sheet">
+      <div class="row"><dt>Orçamento</dt><dd>Antes de mexer<small>Você sabe o valor pelo WhatsApp antes de deixar o aparelho.</small></dd></div>
+      <div class="row"><dt>Atendimento</dt><dd>Direto com a loja<small>Quem responde é a própria Smart Brum's, em Brumadinho.</small></dd></div>
+      <div class="row"><dt>Onde</dt><dd>Na loja, em Brumadinho<small>Traga o aparelho na loja e retire quando estiver pronto.</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec steps-bg" id="como-funciona" aria-labelledby="h-como">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="h-como" class="h2">Como funciona</h2></div>
+    <ol class="steps" id="steps">
+      <li class="step"><span class="n" aria-hidden="true">1</span><h3>Chama no WhatsApp</h3><p>Manda o modelo e o que aconteceu. Se puder, uma foto do defeito.</p></li>
+      <li class="step"><span class="n" aria-hidden="true">2</span><h3>Recebe o orçamento</h3><p>A gente responde com o valor e o que vai ser feito.</p></li>
+      <li class="step"><span class="n" aria-hidden="true">3</span><h3>Traz na loja</h3><p>Deixa o aparelho em Brumadinho e retira consertado.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="loja" aria-labelledby="h-loja">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="h-loja" class="h2">A loja</h2></div>
+    <div class="store">
+      <div class="card-s">
+        <h3>Endereço</h3>
+        <address>Rua José Rodrigues, 24, sala 12, 3º andar<br>São Conrado, Brumadinho - MG</address>
+        <a class="link" href="https://www.google.com/maps/search/?api=1&query=Rua+Jos%C3%A9+Rodrigues+24+S%C3%A3o+Conrado+Brumadinho+MG" target="_blank" rel="noopener">Abrir no mapa</a>
+      </div>
+      <div class="card-s">
+        <h3>Contato</h3>
+        <p>WhatsApp (31) 97190-2296<br>Instagram @smart_brums</p>
+        <a class="link" href="https://www.instagram.com/smart_brums/" target="_blank" rel="noopener">Ver no Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" aria-labelledby="h-final">
+  <div class="final-in">
+    <div>
+      <h2 id="h-final" class="display">Qual o problema do seu celular?</h2>
+      <p>Manda o modelo e o defeito. A gente responde com o orçamento.</p>
+      <a class="btn" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a>
+    </div>
+    <img src="video/bancada.jpg" alt="iPhone vermelho aberto na bancada durante o conserto" width="1280" height="720" loading="lazy" decoding="async" style="border-radius:28px;object-fit:cover;aspect-ratio:4/3">
+  </div>
+</section>
+</main>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <ul><li>Troca de tela<svg><use href="#bolt"/></svg></li><li>Bateria<svg><use href="#bolt"/></svg></li><li>Conector de carga<svg><use href="#bolt"/></svg></li><li>Câmera<svg><use href="#bolt"/></svg></li><li>Tampa traseira<svg><use href="#bolt"/></svg></li><li>Som e microfone<svg><use href="#bolt"/></svg></li></ul>
+    <ul><li>Troca de tela<svg><use href="#bolt"/></svg></li><li>Bateria<svg><use href="#bolt"/></svg></li><li>Conector de carga<svg><use href="#bolt"/></svg></li><li>Câmera<svg><use href="#bolt"/></svg></li><li>Tampa traseira<svg><use href="#bolt"/></svg></li><li>Som e microfone<svg><use href="#bolt"/></svg></li></ul>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Smart Brum's, conserto de celulares em Brumadinho - MG. <a href="../">Ver os Xiaomi à venda</a>.</p>
+    <p class="credito">Vídeos: Tima Miroshnichenko, via Pexels. iPhone é marca da Apple Inc.</p>
+    <p>© 2026 Smart Brum's</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock"><a class="btn btn-zap" data-wa href="https://wa.me/5531971902296?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Smart%20Brum%27s%20e%20quero%20saber%20mais%20sobre%20os%20Xiaomi." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#zap"/></svg>Pedir orçamento</a></div>
+
+
+<script>
+(() => {
+  const WA = '5531971902296';
+  const base = 'Olá! Vim pelo site da Smart Brum\'s e quero um orçamento de conserto do meu celular.';
+  document.querySelectorAll('[data-wa]').forEach(a => {
+    const m = a.getAttribute('data-wa');
+    const txt = m ? `Olá! Vim pelo site da Smart Brum's e quero um orçamento de ${m.toLowerCase()}. Meu celular é: ` : base;
+    a.href = `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  const top = document.getElementById('top');
+  const dock = document.getElementById('dock');
+  const hero = document.querySelector('.hero');
+  const onScroll = () => {
+    top.classList.toggle('scrolled', scrollY > 12);
+    top.classList.toggle('dark', [...document.querySelectorAll('.poco')].some(el => { const r = el.getBoundingClientRect(); return r.top < 40 && r.bottom > 40; }));
+    dock.classList.toggle('show', scrollY > hero.offsetHeight * .6);
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // filme: interior do iPhone na bancada acompanha a rolagem (sequencia de quadros no canvas)
+  const film = document.getElementById('film');
+  const canvas = film.querySelector('canvas');
+  const ctx = canvas.getContext('2d', {alpha: false});
+  const fsteps = [...film.querySelectorAll('.film-step')];
+  const barI = film.querySelector('.film-bar i');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = innerWidth / innerHeight < .75;
+  const STEP = 1; // todos os 121 quadros tambem no celular (antes pulava 1 de cada 2: salto visivel)
+  const urls = [];
+  for (let f = 1; f <= 121; f += STEP) urls.push((mobile ? 'quadros/m/f' : 'quadros/f') + String(f).padStart(3, '0') + '.webp');
+  const N = urls.length;
+  // Carregamento em duas camadas (leve na memoria, sem travar):
+  // 1) cada quadro e baixado e guardado COMPRIMIDO (blob, ~50 KB);
+  // 2) so os quadros perto da posicao atual viram imagem aberta (ImageBitmap), preparada fora do desenho.
+  // Antes, as 121 imagens abertas passavam de 1,7 GB no computador: o navegador descartava e reabria a cada quadro (7 fps no Mac).
+  const BW = mobile ? 810 : 1920, BH = mobile ? 1440 : 1080; // tamanho da imagem aberta (computador: 2560 -> 1920)
+  const JAN = 12, SOLTA = 18, MAX_ABRINDO = 3;
+  const blobs = new Array(N).fill(null), bmp = new Array(N).fill(null), abrindo = new Array(N).fill(false);
+  let emAberto = 0;
+  const temBitmap = typeof createImageBitmap === 'function';
+  const abrir = async i => {
+    abrindo[i] = true; emAberto++;
+    try {
+      let b;
+      if (temBitmap) {
+        try { b = await createImageBitmap(blobs[i], (mobile ? {} : {resizeWidth: BW, resizeHeight: BH, resizeQuality: 'high'})); }
+        catch (e) { b = await createImageBitmap(blobs[i]); }
+      } else {
+        b = new Image(); b.src = URL.createObjectURL(blobs[i]); await b.decode();
+      }
+      if (Math.abs(i - want) > SOLTA) { if (b.close) b.close(); } else { bmp[i] = b; if (Math.abs(i - want) <= 2) draw(curF); }
+    } catch (e) {}
+    abrindo[i] = false; emAberto--; prepara();
+  };
+  // abre os quadros mais perto de onde a pessoa esta (dos mais proximos para os mais longe) e solta os distantes
+  const prepara = () => {
+    const c = Math.round(want);
+    for (let d = 0; d <= JAN && emAberto < MAX_ABRINDO; d++) for (const i of d ? [c + d, c - d] : [c]) {
+      if (i < 0 || i >= N || emAberto >= MAX_ABRINDO) continue;
+      if (blobs[i] && !bmp[i] && !abrindo[i]) abrir(i);
+    }
+    for (let i = 0; i < N; i++) if (bmp[i] && Math.abs(i - c) > SOLTA && Math.abs(i - curF) > SOLTA) { if (bmp[i].close) bmp[i].close(); bmp[i] = null; }
+  };
+  let shown = -1, want = still ? Math.round(N * .2) : 0, curF = want;
+  const pick = i => { if (bmp[i]) return bmp[i]; for (let d = 1; d < N; d++) { if (bmp[i - d]) return bmp[i - d]; if (bmp[i + d]) return bmp[i + d]; } return null; };
+  const larg = im => im.naturalWidth || im.width, alt = im => im.naturalHeight || im.height;
+  let geo = null;
+  const fit = im => {
+    const iw = larg(im), ih = alt(im);
+    if (!geo || geo.w !== iw || geo.cw !== canvas.width) {
+      const cw = canvas.width, ch = canvas.height, sc = Math.max(cw / iw, ch / ih);
+      const dw = iw * sc, dh = ih * sc, fx = iw < ih ? .5 : .37;
+      geo = {w: iw, cw, x: Math.min(0, Math.max(cw - dw, cw / 2 - fx * dw)), y: (ch - dh) / 2, dw, dh};
+    }
+  };
+  // f pode ser fracionario: desenha o quadro de baixo e mistura o de cima pela fracao (sem salto entre quadros)
+  const draw = f => {
+    const i = Math.max(0, Math.min(N - 1, Math.floor(f))), a = Math.min(1, Math.max(0, f - i));
+    const im = pick(i); if (!im) return;
+    fit(im);
+    ctx.globalAlpha = 1; ctx.drawImage(im, geo.x, geo.y, geo.dw, geo.dh);
+    if (a > .01 && i + 1 < N && bmp[i + 1] && im === bmp[i]) { ctx.globalAlpha = a; ctx.drawImage(bmp[i + 1], geo.x, geo.y, geo.dw, geo.dh); ctx.globalAlpha = 1; }
+    shown = f;
+  };
+  const baixa = i => fetch(urls[i]).then(r => r.ok ? r.blob() : null).then(b => { if (!b) return; blobs[i] = b; if (Math.abs(i - want) <= JAN) prepara(); }).catch(() => {});
+  let started = false;
+  const start = () => {
+    if (started) return; started = true;
+    const order = []; for (let st = 8; st >= 1; st >>= 1) for (let i = 0; i < N; i += st) if (!order.includes(i)) order.push(i); if (!order.includes(N - 1)) order.push(N - 1);
+    let k = 0, ativos = 0; const pump = () => { while (ativos < 6 && k < order.length) { ativos++; baixa(order[k++]).finally(() => { ativos--; pump(); }); } }; pump();
+  };
+  new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { start(); o.disconnect(); } }, {rootMargin: '200% 0px'}).observe(film);
+  if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300));
+  let pt = 0, pb = 0, top0 = 0, span = 1;
+  const measure = () => {
+    const cs = getComputedStyle(film); pt = parseFloat(cs.paddingTop) || 0; pb = parseFloat(cs.paddingBottom) || 0;
+    top0 = film.getBoundingClientRect().top + scrollY; span = (film.offsetHeight - pt - pb - innerHeight) || 1;
+    const qw = canvas.clientWidth || 1, qh = canvas.clientHeight || 1, r = Math.min(devicePixelRatio || 1, 2, Math.max(BW / qw, BH / qh, 1));
+    const cw = Math.round(qw * r), ch = Math.round(qh * r);
+    if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'medium'; geo = null; if (shown >= 0 || bmp.some(Boolean)) draw(curF); }
+  };
+  addEventListener('resize', measure); addEventListener('load', measure); measure();
+  let step = -1;
+  const setStep = k => { if (k === step) return; step = k; fsteps.forEach((el, n) => el.classList.toggle('on', n === k)); };
+  setStep(0);
+  if (!still) {
+    let running = false, p = 0;
+    const read = () => { p = Math.min(Math.max((scrollY - top0 - pt) / span, 0), 1); want = p * (N - 1); };
+    const tick = () => {
+      curF += (want - curF) * .35;
+      if (Math.abs(want - curF) < .01) curF = want;
+      if (Math.abs(curF - shown) > .004) draw(curF);
+      prepara();
+      barI.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      setStep(p < .34 ? 0 : p < .68 ? 1 : 2);
+      if (running) requestAnimationFrame(tick);
+    };
+    addEventListener('scroll', read, {passive: true}); read();
+    new IntersectionObserver(e => { const on = e[0].isIntersecting; if (on && !running) { running = true; measure(); read(); requestAnimationFrame(tick); } else if (!on) running = false; }).observe(film);
+  }
+
+  // steps line
+  const steps = document.getElementById('steps');
+  new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { steps.classList.add('seen'); o.disconnect(); } }, {threshold:.5}).observe(steps);
+
+  // phone: pointer tilt with spring + scroll turn
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let heroOn = true;
+  new IntersectionObserver(e => { heroOn = e[0].isIntersecting; if (heroOn) requestAnimationFrame(loop); }).observe(hero);
+  const rig = document.getElementById('rig');
+  const phone = document.getElementById('phone');
+  let fp = 0;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  let tx = 0, ty = 0, x = 0, y = 0, vx = 0, vy = 0, t0 = performance.now();
+  if (fine) {
+    hero.addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - .5) * 20;
+      ty = -((e.clientY - r.top) / r.height - .5) * 14;
+    });
+    hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
+  }
+  const k = 0.06, d = 0.78;
+  const loop = now => {
+    vx = (vx + (tx - x) * k) * d; vy = (vy + (ty - y) * k) * d;
+    x += vx; y += vy;
+    const t = (now - t0) / 1000;
+    const s = Math.min(scrollY / (hero.offsetHeight || 1), 1);
+    const fy = Math.sin(t * 1.1) * 12;
+    const sway = fine ? 0 : Math.sin(t * .9) * 2.2;
+    phone.style.transform = `perspective(1400px) translateY(${fy - s * 140}px) scale(${1 + s * .07}) rotateY(${x * .55}deg) rotateX(${y * .45}deg) rotate(${x * .22 + sway}deg)`;
+    if (heroOn) requestAnimationFrame(loop);
+  };
+})();
+</script>
+</body>
+</html>
