@@ -26,6 +26,25 @@
       "source": "/conserto",
       "destination": "/manutencao",
       "permanent": false
+    },
+    {
+      "source": "/kommo",
+      "destination": "/kommo/entrar",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/kommo/entrar",
+      "destination": "https://organizador-kommo.vercel.app/entrar"
+    },
+    {
+      "source": "/kommo/painel",
+      "destination": "https://organizador-kommo.vercel.app/painel"
+    },
+    {
+      "source": "/kommo/api/:caminho*",
+      "destination": "https://organizador-kommo.vercel.app/api/:caminho*"
     }
   ]
 }
